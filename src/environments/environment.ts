@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: '',
+  baseUrl: "https://dadosabertos.camara.leg.br/api/v2/",
 };
 
 /*

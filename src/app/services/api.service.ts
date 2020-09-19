@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 
 
@@ -10,5 +10,11 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
 
   public url: string = environment.baseUrl;
-   constructor(   httpClient: HttpClient  ) { }
+  constructor(public httpClient: HttpClient) { }
+
+  public getPartidos() {
+    return this.httpClient.get(this.url + 'partidos');
+  }
+
+
 }
