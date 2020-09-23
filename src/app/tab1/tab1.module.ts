@@ -5,14 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
+import { PipesModule } from '../pipes/pipes.module';
+import { ButtonGoToLinkComponent } from '../button-go-to-link/button-go-to-link.component'
+import { DirectivesModule } from '../directives/directives.module';
+
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    PipesModule,
+    DirectivesModule,
+
+
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page, ButtonGoToLinkComponent]
 })
-export class Tab1PageModule {}
+export class Tab1PageModule { }

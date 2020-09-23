@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      API
+      +Partidos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,16 +9,22 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Partidos</ion-title>
+      <ion-title appTextoAzul size="large">
+        Partidos
+      </ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-list>
     <ion-item *ngFor="let partido of partidos">
 
-      <ion-label>{{partido.nome}} .{{partido.sigla}} </ion-label>
+      <ion-label>{{partido.nome  | formatarTextoMaiusculo   }}
+        .{{partido.sigla  | formatarTextoMinusculo}}
+      </ion-label>
       <ion-button color="light">
-        Membros
+
+        <app-button-go-to-link [idPartido]="partido.id" name="Membros" icon="search"></app-button-go-to-link>
+
       </ion-button>
     </ion-item>
 

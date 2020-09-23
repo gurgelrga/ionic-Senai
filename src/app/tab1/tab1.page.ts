@@ -15,6 +15,7 @@ export class Tab1Page implements OnInit {
   ngOnInit() {
     this.apiService.getPartidos().subscribe(response => {
       this.partidos = response.dados;
+      console.log(response.dados);
     })
   }
 }
