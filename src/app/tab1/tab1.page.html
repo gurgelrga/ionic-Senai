@@ -21,11 +21,7 @@
       <ion-label>{{partido.nome  | formatarTextoMaiusculo   }}
         .{{partido.sigla  | formatarTextoMinusculo}}
       </ion-label>
-      <ion-button color="light">
-
-        <app-button-go-to-link [idPartido]="partido.id" name="Membros" icon="search"></app-button-go-to-link>
-
-      </ion-button>
+      <app-button-go-to-link [idPartido]="partido.id" name="Membros" icon="search"></app-button-go-to-link>
     </ion-item>
 
   </ion-list>
