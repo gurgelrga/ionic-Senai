@@ -5,6 +5,9 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar showCancelButton="always" (ionInput)="search($event)" (ionClear)="clear()"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 

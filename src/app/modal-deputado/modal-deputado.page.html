@@ -11,4 +11,21 @@
 
 <ion-content>
 
+  <ion-card>
+    <ion-avatar>
+      <img [src]="deputado.ultimoStatus.urlFoto" />
+    </ion-avatar>
+    <ion-card-header>
+      <ion-card-subtitle>
+        {{deputado.ultimoStatus.nomeEleitoral}}//{{deputado.ultimoStatus.siglaPartido}}}}
+      </ion-card-subtitle>
+      <ion-card-title>{{deputado.nomeCivil}}<br>{{deputado.ufNascimento}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{deputado.ultimoStatus.condicaoEleitoral}}
+    </ion-card-content>
+  </ion-card>
+
+
+
 </ion-content>
