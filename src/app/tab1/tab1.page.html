@@ -29,5 +29,19 @@
 
 
 
-
 </ion-content>
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment>
+      <ion-segment-button [disabled]="page ===1" (click)="anteriorPagina()">
+        <ion-label>Anterior</ion-label>
+      </ion-segment-button>
+      <ion-segment-button [disabled]="!verificarSeTemProximaPagina()" (click)="proximaPagina()">
+        <ion-label>Proximo</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer>
