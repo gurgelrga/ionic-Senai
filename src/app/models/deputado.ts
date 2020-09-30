@@ -14,14 +14,6 @@ export interface Deputado {
         data: string;
         descricaoStatus: string;
         email: string;
-        gabinete: {
-            andar: string;
-            email: string;
-            nome: string;
-            predio: string;
-            sala: string;
-            telefone: string;
-        };
         id: number;
         idLegislatura: number;
         nome: string;
@@ -32,5 +24,13 @@ export interface Deputado {
         uri: string;
         uriPartido: string;
         urlFoto: string;
+        gabinete: {
+            andar: string;
+            email: string;
+            nome: string;
+            predio: string;
+            sala: string;
+            telefone: string;
+        };
     };
 }

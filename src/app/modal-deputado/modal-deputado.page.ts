@@ -12,6 +12,8 @@ export class ModalDeputadoPage implements OnInit {
   @Input() idDeputado: number;
   public deputado: Deputado;
   public carregando: any;
+  public carregamentoFinalizado: boolean = false;
+
   constructor(public apiService: ApiService, public modal: ModalController, public loading: LoadingController) { }
 
   ngOnInit() {
@@ -38,6 +40,8 @@ export class ModalDeputadoPage implements OnInit {
     this.apiService.getDeputadoId(idDeputado).subscribe(response => {
       this.deputado = response.dados;
       this.fecharCarregando();
+      this.carregamentoFinalizado = true;
+
     });
 
   }
