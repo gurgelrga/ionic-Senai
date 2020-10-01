@@ -1,16 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-CRUD    </ion-title>
+    <ion-title size="small">Comidas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirModalCadastroComida()" color="secondary">
+        <ion-icon slot="end" name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">CRUD</ion-title>
+      <ion-title size="large">Comidas</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  
 </ion-content>
