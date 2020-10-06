@@ -23,7 +23,40 @@ export class ComidaService {
     //return Promise.resolve(comidas);
     // });
   }
-  public async salvarComida(comida) {
+  // public async salvarComida(id: number, comida) {
+  //  if (id || id === 0) {
+  //   await this.update(id, comida);
+  //  return;
+  // }
+  // await this.save(comida);
+  //}
+
+  public async salvarComida(comida, id: number) {
+    if (id || id === 0) {
+      await this.update(id, comida);
+      return;
+    }
+    await this.save(comida);
+  }
+
+  //public async update(id: number, comida) {
+  // let comidas = await this.getAll();
+  // comidas = comidas.map((data, index) => {
+  //  if (id === index) {
+  //   return comida;
+  // }
+  //return data;
+  //});
+  // this.storage.set("comidas", JSON.stringify(comidas));
+  //}
+  public async update(id: number, comida) {
+    let comidas = await this.getAll();
+    comidas = comidas.map((data, index) => {
+      return id === index ? comida : data;
+    });
+    this.storage.set("comidas", JSON.stringify(comidas));
+  }
+  public async save(comida) {
     let comidas = await this.getAll();
     if (!comidas) {
       comidas = [];
@@ -43,5 +76,17 @@ export class ComidaService {
     let comidas = await this.getAll();
     comidas.splice(key, 1);
     await this.storage.set("comidas", JSON.stringify(comidas));
+  }
+  public async getComida(key: number) {
+    let comidas = await this.getAll();
+    const comidaProcurada = comidas.find((comida, idC) => {
+      if (idC === key) {
+        return comida;
+      }
+    });
+    return comidaProcurada;
+    //console.log(teste);
+    //console.log(comidas);
+    //console.log(key);
   }
 }

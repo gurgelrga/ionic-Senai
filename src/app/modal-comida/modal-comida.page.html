@@ -9,7 +9,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
   <form [formGroup]="form" (ngSubmit)="submitForm()">
     <ion-row>
       <ion-col>
@@ -23,8 +22,13 @@
       <ion-col>
         <ion-item>
           <ion-label>Tipo</ion-label>
-          <ion-select formControlName="tipo" value="peperoni" placeholder="Selecione o Tipo" okText="Pronto"
-            cancelText="Cancelar">
+          <ion-select
+            formControlName="tipo"
+            value="peperoni"
+            placeholder="Selecione o Tipo"
+            okText="Pronto"
+            cancelText="Cancelar"
+          >
             <ion-select-option value="arabe">Árabe</ion-select-option>
             <ion-select-option value="mexicana">Mexicana</ion-select-option>
           </ion-select>
@@ -35,8 +39,14 @@
       <ion-col>
         <ion-item>
           <ion-label>DD MM YY</ion-label>
-          <ion-datetime formControlName="dataEntrega" displayFormat="DD MM YY" placeholder="Selecione a Data"
-            doneText="Pronto" cancelText="Cancelar" pickerFormat>
+          <ion-datetime
+            formControlName="dataEntrega"
+            displayFormat="DD MM YY"
+            placeholder="Selecione a Data"
+            doneText="Pronto"
+            cancelText="Cancelar"
+            pickerFormat
+          >
           </ion-datetime>
         </ion-item>
       </ion-col>
@@ -46,8 +56,13 @@
       <ion-col>
         <ion-item>
           <ion-label>HH mm</ion-label>
-          <ion-datetime formControlName="horaEntrega" displayFormat="HH mm" placeholder="Selecione a Hora de Entrega"
-            doneText="Pronto" cancelText="Cancelar">
+          <ion-datetime
+            formControlName="horaEntrega"
+            displayFormat="HH mm"
+            placeholder="Selecione a Hora de Entrega"
+            doneText="Pronto"
+            cancelText="Cancelar"
+          >
           </ion-datetime>
         </ion-item>
       </ion-col>
@@ -56,8 +71,18 @@
       <ion-col>
         <ion-item>
           <ion-label>Avaliação</ion-label>
-          <ion-range formControlName='avaliacao' min="-0" max="10" pin color="secondary">
-            <ion-icon slot="start" size="small" name="thumbs-down-outline"></ion-icon>
+          <ion-range
+            formControlName="avaliacao"
+            min="-0"
+            max="10"
+            pin
+            color="secondary"
+          >
+            <ion-icon
+              slot="start"
+              size="small"
+              name="thumbs-down-outline"
+            ></ion-icon>
             <ion-icon slot="end" name="thumbs-up-outline"></ion-icon>
           </ion-range>
         </ion-item>
@@ -83,12 +108,9 @@
     <ion-row>
       <ion-col>
         <ion-button type="submit" color="success" expand="block">
-          Salvar
+          {{isEdit === true ? 'Atualizar' : 'Salvar'}}
         </ion-button>
       </ion-col>
     </ion-row>
-
-
   </form>
-
 </ion-content>
