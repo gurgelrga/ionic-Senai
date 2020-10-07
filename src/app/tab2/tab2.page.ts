@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { ModalComidaPage } from "../modal-comida/modal-comida.page";
 import { ComidaService } from "../services/comida.service";
+import { LoadingController } from "@ionic/angular";
 
 @Component({
   selector: "app-tab2",
@@ -10,41 +11,70 @@ import { ComidaService } from "../services/comida.service";
 })
 export class Tab2Page implements OnInit {
   public comidas = [];
-  constructor(public modal: ModalController, public comida: ComidaService) {}
+  public carregando: any;
+
+  constructor(
+    public modal: ModalController,
+    public comida: ComidaService,
+    public loading: LoadingController
+  ) {}
 
   ngOnInit() {
     this.getComidas();
   }
   async abrirModalCadastroComida() {
+    await this.showCarregando();
     const modal = await this.modal.create({
       component: ModalComidaPage,
     });
+    await this.fecharCarregando();
     return await modal.present();
   }
-  public async getComidas() {
-    this.comidas = await this.comida.getAll();
-    console.log(this.comidas);
+  // public async getComidas() {
+  // await this.showCarregando();
+  // this.comidas = await this.comida.getAll();
+  //await this.fecharCarregando();
+  //console.log(this.comidas);
+  //}
+
+  async getComidas(): Promise<void> {
+    await this.showCarregando();
+    setTimeout(async () => {
+      this.comidas = await this.comida.getAll();
+      await this.fecharCarregando();
+    }, 2000);
   }
+
   public async remover(key: number) {
     await this.getComidas();
     await this.comida.remove(key);
   }
   public async editar(key: number) {
     await this.getComidas();
-
     await this.comida.getComida(key);
-
     const modal = await this.modal.create({
       component: ModalComidaPage,
       componentProps: {
         id: key,
       },
     });
+
     return await modal.present();
   }
 
   public async removerAll() {
     await this.getComidas();
     await this.comida.removeAll();
+  }
+
+  async showCarregando() {
+    this.carregando = await this.loading.create({
+      message: "Aguarde...",
+    });
+    await this.carregando.present();
+  }
+
+  async fecharCarregando() {
+    await this.carregando.dismiss();
   }
 }
