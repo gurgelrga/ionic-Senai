@@ -19,13 +19,17 @@ export class Tab2Page implements OnInit {
     public loading: LoadingController
   ) {}
 
-  ngOnInit() {
-    this.getComidas();
+  async ngOnInit() {
+    await this.getComidas();
   }
+
   async abrirModalCadastroComida() {
     await this.showCarregando();
     const modal = await this.modal.create({
       component: ModalComidaPage,
+    });
+    modal.onDidDismiss().then(async () => {
+      await this.getComidas();
     });
     await this.fecharCarregando();
     return await modal.present();
@@ -46,8 +50,8 @@ export class Tab2Page implements OnInit {
   }
 
   public async remover(key: number) {
-    await this.getComidas();
     await this.comida.remove(key);
+    await this.getComidas();
   }
   public async editar(key: number) {
     await this.getComidas();
@@ -58,7 +62,9 @@ export class Tab2Page implements OnInit {
         id: key,
       },
     });
-
+    modal.onDidDismiss().then(async () => {
+      await this.getComidas();
+    });
     return await modal.present();
   }
 

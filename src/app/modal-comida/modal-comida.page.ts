@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { ComidaService } from "../services/comida.service";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, ToastController } from "@ionic/angular";
 
 @Component({
   selector: "app-modal-comida",
@@ -18,7 +18,8 @@ export class ModalComidaPage implements OnInit {
     public modal: ModalController,
     public formBuilder: FormBuilder,
     public comida: ComidaService,
-    public loading: LoadingController
+    public loading: LoadingController,
+    public toastControl: ToastController
   ) {
     this.form = this.formBuilder.group({
       nome: [""],
@@ -37,6 +38,19 @@ export class ModalComidaPage implements OnInit {
     }
     // console.log(this.id);
   }
+  async showMensagem() {
+    let mensage: string = "Comida Cadastrada com Sucesso";
+    if (this.isEdit) {
+      mensage = "Comida Atualizada com Sucesso";
+    }
+    const toast = await this.toastControl.create({
+      message: mensage,
+      duration: 2000,
+      color: "success",
+    });
+
+    toast.present();
+  }
   public fecharModal(): void {
     this.modal.dismiss();
   }
@@ -45,6 +59,8 @@ export class ModalComidaPage implements OnInit {
     //console.log(this.form.value);
     this.comida.salvarComida(this.form.value, this.id);
     await this.fecharCarregando();
+    this.fecharModal();
+    this.showMensagem();
   }
   public async editarComida() {
     await this.showCarregando();
@@ -52,6 +68,7 @@ export class ModalComidaPage implements OnInit {
     // console.log(edComida);
     this.form.patchValue(edComida);
     await this.fecharCarregando();
+    //this.fecharModal();
   }
 
   async showCarregando() {
